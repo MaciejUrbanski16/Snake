@@ -21,3 +21,13 @@ TEST(Segment, CheckCreatingOfSegment){
     //THEN
     EXPECT_EQ(s.getXCoordinate(),x);
 }
+
+TEST(Food,GeneretingFood){
+    //GIVEN
+    Food f; // constructor generates segments with food
+
+    //WHEN
+
+    //THEN
+    EXPECT_EQ(5,f.getSegmentsWithFood().size());
+}
