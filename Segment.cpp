@@ -83,6 +83,10 @@ Segment Food::getRandomSegment() {
     return tempSegmWithFood;
 }
 
+void Food::setSegmentsWithFood(std::vector<Segment> &newSegments) {
+    this->segmentsWithFood_ = newSegments;
+}
+
 
 
 

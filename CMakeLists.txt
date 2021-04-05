@@ -3,6 +3,6 @@ project(snake)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(snake main.cpp Segment.cpp Segment.h)
+add_executable(snake main.cpp Segment.cpp Segment.h Snake.cpp Snake.h)
 
 add_subdirectory(Google_tests)
