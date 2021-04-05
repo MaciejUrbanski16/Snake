@@ -2,12 +2,22 @@
 // Created by Admin on 01.04.2021.
 //
 #include <gtest/gtest.h>
+#include "../Segment.h"
+
 
 int main(int argc, char *argv[]) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
 
-TEST(pierwa,dwa){
-    EXPECT_EQ(1,1);
+TEST(Segment, CheckCreatingOfSegment){
+    //GIVEN
+    Segment s(12,3);
+
+    //WHEN
+    coordinate_t x = 15;
+    s.setXCoordinate(15);
+
+    //THEN
+    EXPECT_EQ(s.getXCoordinate(),x);
 }

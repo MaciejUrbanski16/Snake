@@ -1,6 +1,9 @@
 #include <iostream>
 
+#include "Segment.h"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Segment s(4,2);
+    std::cout << s << std::endl;
     return 0;
 }
