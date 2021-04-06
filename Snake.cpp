@@ -34,6 +34,8 @@ void Snake::riseUp(){
             tempSegments.erase(tempSegments.begin() + i);
 
             this->elementsOnPlane_.setSegmentsWithFood(tempSegments);
+
+            this->elementsOnPlane_.completeFoodsAfterEating(1);
         }
     }
 }
@@ -71,6 +73,11 @@ bool Snake::checkCollision() {
         if(this->snakeSegments_[i] == this->snakeSegments_[0]){
             collision = true;
             break;
+        }
+    }
+    for(auto & it : this->elementsOnPlane_.getSegmentsWithObstacles()){
+        if(it == this->snakeSegments_[0]){
+            collision = true;
         }
     }
 

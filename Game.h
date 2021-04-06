@@ -11,7 +11,7 @@
 
 //defaults size of plane
 const uint32_t height = 15;
-const uint32_t width = 25;
+const uint32_t width = 15;
 
 class Area{
 public:

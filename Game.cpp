@@ -65,9 +65,8 @@ void Game::displaySnakeAndPlane() {
                         break;
                     }
                 }
-                for(int k = 0; k< snake_.getElements().getSegmentsWithObstacles().size(); k++){
-                    if(snake_.getElements().getSegmentsWithObstacles()[k].getXCoordinate() == j &&
-                       snake_.getElements().getSegmentsWithObstacles()[k].getYCoordinate() == i){
+                for(auto & it : snake_.getElements().getSegmentsWithObstacles()){
+                    if(it.getXCoordinate() == j && it.getYCoordinate() == i){
                         isObstacleHere = true;
                         break;
                     }
