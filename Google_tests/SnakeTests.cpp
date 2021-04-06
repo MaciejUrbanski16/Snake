@@ -13,6 +13,6 @@ TEST(Snake,checkCollision){
     Snake snake(s);
 
     //WHEN
-    bool col = snake.checkCollsion();
+    bool col = snake.checkCollision();
     EXPECT_EQ(col,true);
 }

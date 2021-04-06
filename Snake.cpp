@@ -6,11 +6,12 @@
 
 Snake::Snake() {
 
-    this->snakeSegments_.emplace_back(6,10);
-    this->snakeSegments_.emplace_back(7,10);
-    this->snakeSegments_.emplace_back(8,10);
-    this->snakeSegments_.emplace_back(9,10);
+    //default position of snake after start
     this->snakeSegments_.emplace_back(10,10);
+    this->snakeSegments_.emplace_back(9,10);
+    this->snakeSegments_.emplace_back(8,10);
+    this->snakeSegments_.emplace_back(7,10);
+    this->snakeSegments_.emplace_back(6,10);
 
     this->food_ = Food();
 }
@@ -31,6 +32,7 @@ void Snake::riseUp(){
             //food is removed after eating it
             std::vector<Segment> tempSegments = this->food_.getSegmentsWithFood();
             tempSegments.erase(tempSegments.begin() + i);
+
             this->food_.setSegmentsWithFood(tempSegments);
         }
     }
@@ -61,10 +63,10 @@ void Snake::setNewPositionsAfterMovement(Direction dir){
 
 }
 
-bool Snake::checkCollsion() {
+bool Snake::checkCollision() {
     bool collision = false;
 
-    for(int i = 1; i < this->snakeSegments_.size();i++){
+    for(int i = 3; i < this->snakeSegments_.size();i++){
 
         if(this->snakeSegments_[i] == this->snakeSegments_[0]){
             collision = true;
@@ -73,4 +75,12 @@ bool Snake::checkCollsion() {
     }
 
     return collision;
+}
+
+std::vector<Segment> Snake::getSegments() {
+    return this->snakeSegments_;
+}
+
+Food Snake::getFood() {
+    return this->food_;
 }

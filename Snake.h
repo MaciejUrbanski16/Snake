@@ -22,7 +22,11 @@ public:
     void riseUp();
     void setNewPositionsAfterMovement(Direction dir);
 
-    bool checkCollsion();
+    bool checkCollision();
+
+    std::vector<Segment> getSegments();
+
+    Food getFood();
 
 
 private:

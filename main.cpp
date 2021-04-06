@@ -1,9 +1,15 @@
 #include <iostream>
 
 #include "Segment.h"
+#include "Snake.h"
+#include "Game.h"
 
 int main() {
-    Segment s(4,2);
-    std::cout << s << std::endl;
+
+    Area area;
+    Snake snake;
+
+    Game game(snake,area);
+    game.runGame();
     return 0;
 }
