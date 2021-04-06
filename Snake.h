@@ -26,12 +26,12 @@ public:
 
     std::vector<Segment> getSegments();
 
-    Food getFood();
+    ElementsOnPlane getElements();
 
 
 private:
     std::vector<Segment> snakeSegments_;
-    Food food_;
+    ElementsOnPlane elementsOnPlane_;
 };
 
 

@@ -13,27 +13,27 @@ Snake::Snake() {
     this->snakeSegments_.emplace_back(7,10);
     this->snakeSegments_.emplace_back(6,10);
 
-    this->food_ = Food();
+    this->elementsOnPlane_ = ElementsOnPlane();
 }
 
 Snake::Snake(std::vector<Segment> &snakeSegments) {
     this->snakeSegments_ = snakeSegments;
 
-    this->food_ = Food();
+    this->elementsOnPlane_ = ElementsOnPlane();
 }
 
 void Snake::riseUp(){
-    for(int i = 0 ; i < this->food_.getSegmentsWithFood().size(); i++) {
-        if (snakeSegments_[0] == this->food_.getSegmentsWithFood()[i]){
+    for(int i = 0 ; i < this->elementsOnPlane_.getSegmentsWithFood().size(); i++) {
+        if (snakeSegments_[0] == this->elementsOnPlane_.getSegmentsWithFood()[i]){
 
             // snake is getting longer
-            snakeSegments_.insert(snakeSegments_.begin(),this->food_.getSegmentsWithFood()[i]);
+            snakeSegments_.insert(snakeSegments_.begin(),this->elementsOnPlane_.getSegmentsWithFood()[i]);
 
             //food is removed after eating it
-            std::vector<Segment> tempSegments = this->food_.getSegmentsWithFood();
+            std::vector<Segment> tempSegments = this->elementsOnPlane_.getSegmentsWithFood();
             tempSegments.erase(tempSegments.begin() + i);
 
-            this->food_.setSegmentsWithFood(tempSegments);
+            this->elementsOnPlane_.setSegmentsWithFood(tempSegments);
         }
     }
 }
@@ -81,6 +81,6 @@ std::vector<Segment> Snake::getSegments() {
     return this->snakeSegments_;
 }
 
-Food Snake::getFood() {
-    return this->food_;
+ElementsOnPlane Snake::getElements() {
+    return this->elementsOnPlane_;
 }

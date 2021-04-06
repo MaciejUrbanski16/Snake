@@ -37,14 +37,18 @@ private:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Food{
+class ElementsOnPlane{
 public:
-    Food();
+    ElementsOnPlane();
 
-    Food(std::vector<Segment> &segmentsWithFood);
+    ElementsOnPlane(std::vector<Segment> &segmentsWithFood);
 
     std::vector<Segment> getSegmentsWithFood();
+    std::vector<Segment> getSegmentsWithObstacles();
+
     void generateSegmentsWithFood();
+    void generateSegmentsWithObstacles();
+
     void completeFoodsAfterEating(uint32_t ticks);
 
     Segment getRandomSegment();
@@ -54,9 +58,11 @@ public:
 private:
     std::vector<Segment> segmentsWithFood_;
 
+    std::vector<Segment> segmentsWithObstacles_;
 
 
-    bool repeatPositionOfGeneratedFood(Segment &seg);
+
+    bool repeatPositionOfGeneratedFoodOrObstacle(Segment &seg);
 
     uint16_t maxFood = 5;
 };

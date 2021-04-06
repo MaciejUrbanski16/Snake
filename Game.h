@@ -7,6 +7,7 @@
 
 #include <cstdint>
 #include "Snake.h"
+#include "Obstacles.h"
 
 //defaults size of plane
 const uint32_t height = 15;

@@ -51,20 +51,30 @@ void Game::displaySnakeAndPlane() {
             else{
                 bool isSnakeHere = false;
                 bool isFoodHere = false;
+                bool isObstacleHere = false;
                 for(int k = 0; k<snake_.getSegments().size(); k++){
                     if(snake_.getSegments()[k].getXCoordinate() == j && snake_.getSegments()[k].getYCoordinate() == i){
                         isSnakeHere = true;
                         break;
                     }
                 }
-                for(int k = 0; k<snake_.getFood().getSegmentsWithFood().size(); k++){
-                    if(snake_.getFood().getSegmentsWithFood()[k].getXCoordinate() == j && snake_.getFood().getSegmentsWithFood()[k].getYCoordinate() == i){
+                for(int k = 0; k< snake_.getElements().getSegmentsWithFood().size(); k++){
+                    if(snake_.getElements().getSegmentsWithFood()[k].getXCoordinate() == j &&
+                            snake_.getElements().getSegmentsWithFood()[k].getYCoordinate() == i){
                         isFoodHere = true;
+                        break;
+                    }
+                }
+                for(int k = 0; k< snake_.getElements().getSegmentsWithObstacles().size(); k++){
+                    if(snake_.getElements().getSegmentsWithObstacles()[k].getXCoordinate() == j &&
+                       snake_.getElements().getSegmentsWithObstacles()[k].getYCoordinate() == i){
+                        isObstacleHere = true;
                         break;
                     }
                 }
                 if(isFoodHere){std::cout<<'F';}
                 else if(isSnakeHere){std::cout<<'O';}
+                else if(isObstacleHere){std::cout<<'X';}
                 else std::cout<<' ';
             }
 

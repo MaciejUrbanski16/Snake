@@ -4,6 +4,7 @@
 
 
 #include "Segment.h"
+#include "Game.h"
 
 Segment::Segment(const Segment &seg) {
     this->xCoordinate_ = seg.xCoordinate_;
@@ -36,17 +37,19 @@ bool Segment::operator==(const Segment &s) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Food::Food() {
+ElementsOnPlane::ElementsOnPlane() {
     srand(time(NULL));
+
+    this->generateSegmentsWithObstacles();
     this->generateSegmentsWithFood();
 }
 
-Food::Food(std::vector<Segment> &segmentsWithFood){
+ElementsOnPlane::ElementsOnPlane(std::vector<Segment> &segmentsWithFood){
     this->segmentsWithFood_ = segmentsWithFood;
 }
 
-void Food::generateSegmentsWithFood(){
-    srand(time(NULL));
+void ElementsOnPlane::generateSegmentsWithFood(){
+
     for(int i=0; i<maxFood; i++){
 
         this->segmentsWithFood_.push_back(getRandomSegment());
@@ -54,38 +57,61 @@ void Food::generateSegmentsWithFood(){
 
 }
 
-bool Food::repeatPositionOfGeneratedFood(Segment &seg) {
+void ElementsOnPlane::generateSegmentsWithObstacles() {
+
+    uint32_t totalArea = height * width;
+    uint32_t numberOfObstacles = 2 *((totalArea - (totalArea%100))/100);
+
+    for(int i = 0 ; i  < numberOfObstacles; i++){
+        Segment temp = getRandomSegment();
+        this->segmentsWithObstacles_.push_back(temp);
+    }
+}
+
+bool ElementsOnPlane::repeatPositionOfGeneratedFoodOrObstacle(Segment &seg) {
     for(int i = 0 ; i < this->segmentsWithFood_.size(); i++){
         if(seg == segmentsWithFood_[i]){
+            return true;
+        }
+    }
+
+    for(auto & segmentsWithObstacle : this->segmentsWithObstacles_){
+        if(seg == segmentsWithObstacle){
             return true;
         }
     }
     return false;
 }
 
-std::vector<Segment> Food::getSegmentsWithFood() {
+std::vector<Segment> ElementsOnPlane::getSegmentsWithFood() {
     return this->segmentsWithFood_;
 }
 
-void Food::completeFoodsAfterEating(uint32_t ticks) {
+std::vector<Segment> ElementsOnPlane::getSegmentsWithObstacles() {
+    return this->segmentsWithObstacles_;
+}
+
+void ElementsOnPlane::completeFoodsAfterEating(uint32_t ticks) {
     this->segmentsWithFood_.push_back(getRandomSegment());
 }
 
-Segment Food::getRandomSegment() {
+Segment ElementsOnPlane::getRandomSegment() {
     //TODO generate randomly position of food
     Segment tempSegmWithFood;
     //to avoid repeating of food's position
     do {
-        Segment s(23 - rand() % 22, 13 - rand() % 12);
+        Segment s(width - 2 - rand() % (width - 3), height -2  - rand() % (height - 3));
         tempSegmWithFood = s;
-    }while(repeatPositionOfGeneratedFood(tempSegmWithFood));
+    }while(repeatPositionOfGeneratedFoodOrObstacle(tempSegmWithFood));
 
     return tempSegmWithFood;
 }
 
-void Food::setSegmentsWithFood(std::vector<Segment> &newSegments) {
+void ElementsOnPlane::setSegmentsWithFood(std::vector<Segment> &newSegments) {
     this->segmentsWithFood_ = newSegments;
 }
+
+
 
 
 

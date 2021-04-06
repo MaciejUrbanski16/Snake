@@ -24,7 +24,7 @@ TEST(Segment, CheckCreatingOfSegment){
 
 TEST(Food,GeneretingFood){
     //GIVEN
-    Food f; // constructor generates segments with food
+    ElementsOnPlane f; // constructor generates segments with food
 
     //WHEN
 
