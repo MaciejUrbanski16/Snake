@@ -81,7 +81,7 @@ void Game::displaySnakeAndPlane() {
 
         std::cout<<std::endl;
     }
-    std::cout<<"O --> snake\nF --> food\nX --> obstacle\n# --> wall\n\nPOINTS: "<<this->snake_.points<<'\n';
+    std::cout<<"O --> snake\nF --> food\nX --> obstacle\n# --> wall\n\nPOINTS: "<<this->snake_.points<<'\n'<<"Rapid: "<<this->rapid<<'\n';
 }
 
 void Game::runGame() {
@@ -90,7 +90,7 @@ void Game::runGame() {
     while(!snake_.checkCollision()){
         std::this_thread::sleep_for(std::chrono::milliseconds(rapid));
 
-        //rapid = rapid - (rapid/this->snake_.points);
+        //rapid = rapid - 0.05 * rapid;
 
         snake_.setNewPositionsAfterMovement(currDir);
 
@@ -127,7 +127,7 @@ void Game::runGame() {
             }
         }
 
-        this->snake_.riseUp();
+        this->snake_.riseUp(rapid);
         this->snake_.afterMeetWall();
 
         displaySnakeAndPlane();

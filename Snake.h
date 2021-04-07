@@ -19,7 +19,7 @@ public:
         UP, DOWN, LEFT, RIGHT
     };
 
-    void riseUp();
+    void riseUp(int &rapid);
     void setNewPositionsAfterMovement(Direction dir);
 
     bool checkCollision();

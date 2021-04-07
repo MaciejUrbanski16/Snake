@@ -25,7 +25,7 @@ Snake::Snake(std::vector<Segment> &snakeSegments) {
     this->elementsOnPlane_ = ElementsOnPlane();
 }
 
-void Snake::riseUp(){
+void Snake::riseUp(int &rapid){
     for(int i = 0 ; i < this->elementsOnPlane_.getSegmentsWithFood().size(); i++) {
         if (snakeSegments_[0] == this->elementsOnPlane_.getSegmentsWithFood()[i]){
 
@@ -39,6 +39,8 @@ void Snake::riseUp(){
             this->elementsOnPlane_.setSegmentsWithFood(tempSegments);
 
             this->points += 10;
+
+            rapid = rapid - 0.05*rapid;
 
             this->elementsOnPlane_.completeFoodsAfterEating(1);
         }
