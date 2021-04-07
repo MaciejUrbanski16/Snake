@@ -90,7 +90,7 @@ void Game::runGame() {
     while(!snake_.checkCollision()){
         std::this_thread::sleep_for(std::chrono::milliseconds(rapid));
 
-        rapid = rapid - (rapid/this->snake_.points);
+        //rapid = rapid - (rapid/this->snake_.points);
 
         snake_.setNewPositionsAfterMovement(currDir);
 
