@@ -73,6 +73,7 @@ void ElementsOnPlane::generateSegmentsWithObstacles() {
 
         generateGroupOfObstacles(i);
 
+
     }
 }
 

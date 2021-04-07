@@ -3,6 +3,7 @@
 //
 
 #include "Snake.h"
+#include "Game.h"
 
 Snake::Snake() {
 
@@ -13,12 +14,14 @@ Snake::Snake() {
     this->snakeSegments_.emplace_back(7,10);
     this->snakeSegments_.emplace_back(6,10);
 
+    this->points = 0;
+
     this->elementsOnPlane_ = ElementsOnPlane();
 }
 
 Snake::Snake(std::vector<Segment> &snakeSegments) {
     this->snakeSegments_ = snakeSegments;
-
+    this->points = 0;
     this->elementsOnPlane_ = ElementsOnPlane();
 }
 
@@ -34,6 +37,8 @@ void Snake::riseUp(){
             tempSegments.erase(tempSegments.begin() + i);
 
             this->elementsOnPlane_.setSegmentsWithFood(tempSegments);
+
+            this->points += 10;
 
             this->elementsOnPlane_.completeFoodsAfterEating(1);
         }
@@ -90,4 +95,21 @@ std::vector<Segment> Snake::getSegments() {
 
 ElementsOnPlane Snake::getElements() {
     return this->elementsOnPlane_;
+}
+
+void Snake::afterMeetWall() {
+    for(auto & seg : this->snakeSegments_){
+        if(seg.getXCoordinate() == 0){
+            seg.setXCoordinate(width - 1);
+        }
+        else if(seg.getXCoordinate() == width){
+            seg.setXCoordinate(1);
+        }
+        if(seg.getYCoordinate() == 0){
+            seg.setYCoordinate(height - 1);
+        }
+        else if(seg.getYCoordinate() == height){
+            seg.setYCoordinate(1);
+        }
+    }
 }

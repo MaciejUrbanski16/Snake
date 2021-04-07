@@ -9,9 +9,9 @@
 #include "Snake.h"
 #include "Obstacles.h"
 
-//defaults size of plane
-const uint32_t height = 15;
-const uint32_t width = 15;
+//defaults sizes of plane
+const uint32_t height = 20;
+const uint32_t width = 20;
 
 class Area{
 public:
@@ -41,6 +41,13 @@ public:
 private:
     Area area_;
     Snake snake_;
+
+    void increaseRapid();
+
+    int rapid = 150;
+    uint16_t previousPoints = 0;
+
+    bool gameOver = false;
 };
 
 #endif //SNAKE_GAME_H

@@ -24,9 +24,13 @@ public:
 
     bool checkCollision();
 
+    void afterMeetWall();
+
     std::vector<Segment> getSegments();
 
     ElementsOnPlane getElements();
+
+    uint16_t points;
 
 
 private:
