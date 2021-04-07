@@ -65,6 +65,8 @@ private:
     bool repeatPositionOfGeneratedFoodOrObstacle(Segment &seg);
 
     uint16_t maxFood = 5;
+
+    void generateGroupOfObstacles(int i);
 };
 
 

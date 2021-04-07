@@ -3,6 +3,7 @@
 //
 
 
+#include <set>
 #include "Segment.h"
 #include "Game.h"
 
@@ -62,9 +63,53 @@ void ElementsOnPlane::generateSegmentsWithObstacles() {
     uint32_t totalArea = height * width;
     uint32_t numberOfObstacles = 2 *((totalArea - (totalArea%100))/100);
 
+    //TODO generating groups of obstacles
+    std::vector<std::set<Segment>> groupsOfObstacles;
+
     for(int i = 0 ; i  < numberOfObstacles; i++){
+
         Segment temp = getRandomSegment();
         this->segmentsWithObstacles_.push_back(temp);
+
+        generateGroupOfObstacles(i);
+
+    }
+}
+
+void ElementsOnPlane::generateGroupOfObstacles(int i) {
+    for(int j = 0 ; j< i ; j++){
+
+        int situateObstacle = rand()%4;
+        Segment tempSegm;
+
+        //generate obstacle next to previous obstacle
+        switch(situateObstacle){
+            case 0:
+                tempSegm.setXCoordinate(this->segmentsWithObstacles_.back().getXCoordinate());
+                tempSegm.setYCoordinate(this->segmentsWithObstacles_.back().getYCoordinate() + 1);
+                this->segmentsWithObstacles_.push_back(tempSegm);
+
+                break;
+            case 1:
+                tempSegm.setXCoordinate(this->segmentsWithObstacles_.back().getXCoordinate());
+                tempSegm.setYCoordinate(this->segmentsWithObstacles_.back().getYCoordinate() - 1);
+                this->segmentsWithObstacles_.push_back(tempSegm);
+
+                break;
+            case 2:
+                tempSegm.setXCoordinate(this->segmentsWithObstacles_.back().getXCoordinate() + 1);
+                tempSegm.setYCoordinate(this->segmentsWithObstacles_.back().getYCoordinate());
+                this->segmentsWithObstacles_.push_back(tempSegm);
+
+                break;
+            case 3:
+                tempSegm.setXCoordinate(this->segmentsWithObstacles_.back().getXCoordinate() - 1);
+                tempSegm.setYCoordinate(this->segmentsWithObstacles_.back().getYCoordinate());
+                this->segmentsWithObstacles_.push_back(tempSegm);
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -96,7 +141,7 @@ void ElementsOnPlane::completeFoodsAfterEating(uint32_t ticks) {
 }
 
 Segment ElementsOnPlane::getRandomSegment() {
-    //TODO generate randomly position of food
+
     Segment tempSegmWithFood;
     //to avoid repeating of food's position
     do {
@@ -110,6 +155,8 @@ Segment ElementsOnPlane::getRandomSegment() {
 void ElementsOnPlane::setSegmentsWithFood(std::vector<Segment> &newSegments) {
     this->segmentsWithFood_ = newSegments;
 }
+
+
 
 
 
