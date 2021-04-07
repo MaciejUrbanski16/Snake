@@ -95,7 +95,7 @@ std::vector<Segment> Snake::getSegments() {
     return this->snakeSegments_;
 }
 
-ElementsOnPlane Snake::getElements() {
+ElementsOnPlane Snake::getElements()const {
     return this->elementsOnPlane_;
 }
 

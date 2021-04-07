@@ -53,7 +53,8 @@ public:
 
     Segment getRandomSegment();
 
-    void setSegmentsWithFood(std::vector<Segment> &newSegments);
+    void setSegmentsWithFood(std::vector<Segment> &newFood);
+    void setSegmentsObstacles(const std::vector<Segment> &newObst);
 
 private:
     std::vector<Segment> segmentsWithFood_;

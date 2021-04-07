@@ -9,7 +9,6 @@ int main() {
     Area area;
     Snake snake;
 
-
     Game game(snake,area);
     game.runGame();
     return 0;

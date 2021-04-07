@@ -157,6 +157,10 @@ void ElementsOnPlane::setSegmentsWithFood(std::vector<Segment> &newSegments) {
     this->segmentsWithFood_ = newSegments;
 }
 
+void ElementsOnPlane::setSegmentsObstacles(const std::vector<Segment> &newObst) {
+    this->segmentsWithObstacles_ = newObst;
+}
+
 
 
 

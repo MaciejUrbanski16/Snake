@@ -44,7 +44,7 @@ private:
 
     void increaseRapid();
 
-    int rapid = 150;
+    int velocity = 150;
     uint16_t previousPoints = 0;
 
     bool gameOver = false;

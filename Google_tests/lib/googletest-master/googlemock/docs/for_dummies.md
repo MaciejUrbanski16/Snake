@@ -65,7 +65,7 @@ following problems is bothering you:
 
 *   You are stuck with a sub-optimal design and wish you had done more
     prototyping before it was too late, but prototyping in C++ is by no means
-    "rapid".
+    "velocity".
 *   Your tests are slow as they depend on too many libraries or use expensive
     resources (e.g. a database).
 *   Your tests are brittle as some resources they use are unreliable (e.g. the

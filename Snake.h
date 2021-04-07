@@ -26,9 +26,11 @@ public:
 
     void afterMeetWall();
 
+
+
     std::vector<Segment> getSegments();
 
-    ElementsOnPlane getElements();
+    ElementsOnPlane getElements() const;
 
     uint16_t points;
 
